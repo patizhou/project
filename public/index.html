@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>MY-MAP</title>
+    <h1>MAP & WEATHERCHART OF GZ</h1>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ngwsmyC1ss4K2kX0cNTpVwpI4gqQOVP1"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/marker?"></script>
+<script type="text/javascript" src="https://api.darksky.net/forecast/826a2861d1a67df803840425d4bbb6c4/37.8267,-122.4233"></script>
+    <script type="text/javascript" src="vue-weather-widget.js"></script>
+<link href="vue-weather-widget.css" rel="stylesheet">
+<link href="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.4/src/TrafficControl_min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+<link rel="stylesheet" href="https://bootswatch.com/sandstone/bootstrap.min.css">
+<style type="text/css">  
+html{width:100%; padding: 150px; padding-top: 0px;}
+body{height:300px; width:70%; margin: 10px; padding-block:50px}  
+#allmap{height:100%; margin:5px;padding:150px; width:80%; font-family:"Arial" } 
+#app{height: 50px;}
+h1{padding-left:200px;}
+    </style>  
+</head>
+  <body>
+      <div id="allmap"></div> 
+      <script type="text/javascript"> 
+      var map = new BMap.Map("allmap");
+      var point = new BMap.Point(113.35299389289852,23.138171441023832); 
+      map.centerAndZoom(point, 15); 
+      map.enableScrollWheelZoom(true);
+      var marker = new BMap.Marker(point);
+      map.addOverlay(marker);
+      var point2 = new BMap.Point(113.4075325828,23.0175704487)
+      var marker2 = new BMap.Marker(point2);
+      map.addOverlay(marker2);
+      var ctrl = new BMapLin.TrafficControl ({
+        showPanel: false
+      });
+      map.addControl(ctrl);
+      ctrl.setAnchor(BMAP_ANCHOR_BOTTOM_RIGHT);
+    
+
+      </script> 
+    <div id="app">
+        <weather 
+        api-key="826a2861d1a67df803840425d4bbb6c4///"
+        title="Weather for GuangZhou "
+        units="uk"
+        :latitude="lat"
+        :longitude="long"
+        language="en"></weather>
+    </div>
+  </body>
+</html>
